@@ -162,6 +162,8 @@ def download(element, stream=True, query='', force=False):
                                             release.files = version.files
                                             db.downloading += [element.query() + ' [' + element.version.name + ']']
                                             ui_print('[realdebrid] adding uncached release: ' + release.title)
+                                            with open('/txt_out/downloads.txt','a') as f:
+                                                f.write(str(response.download))
                                             return True
                                 else:
                                     ui_print('[realdebrid] error: selecting this cached file combination returned a .rar archive - trying a different file combination.', ui_settings.debug)
