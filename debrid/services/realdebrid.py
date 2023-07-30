@@ -177,6 +177,8 @@ def download(element, stream=True, query='', force=False):
                                 ui_print('[realdebrid] adding cached release: ' + release.title)
                                 if not actual_title == "":
                                     release.title = actual_title
+                                with open('/txt_out/downloads.txt','a') as f:
+                                    f.write(str(response.download))
                                 return True
                 ui_print('[realdebrid] error: no streamable version could be selected for release: ' + release.title)
                 return False
@@ -186,6 +188,8 @@ def download(element, stream=True, query='', force=False):
                     time.sleep(0.1)
                     post('https://api.real-debrid.com/rest/1.0/torrents/selectFiles/' + str(response.id),{'files': 'all'})
                     ui_print('[realdebrid] adding uncached release: ' + release.title)
+                    with open('/txt_out/downloads.txt','a') as f:
+                        f.write(str(responce.download))
                     return True
                 except:
                     continue
